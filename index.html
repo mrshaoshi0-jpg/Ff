@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="相簿">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>相簿</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 安裝引導（iPhone Safari 分頁中顯示） -->
+<section id="guide" hidden>
+  <div class="guide-card">
+    <img src="icon-192.png" alt="" class="guide-icon">
+    <h1>先加到主畫面</h1>
+    <p class="guide-sub">相片資料存在「主畫面 App」自己的儲存空間裡，請先加入主畫面，再從主畫面圖示開啟。</p>
+    <ol class="guide-steps">
+      <li><span class="n">1</span><span>點 Safari 底部的 <b>分享</b> 按鈕
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4M5 12v8h14v-8"/></svg></span></li>
+      <li><span class="n">2</span><span>向下捲動，選 <b>加入主畫面</b></span></li>
+      <li><span class="n">3</span><span>回到主畫面，點「相簿」圖示開啟</span></li>
+    </ol>
+    <button id="guide-skip" class="link">仍要在瀏覽器中使用（資料不會同步到主畫面 App）</button>
+  </div>
+</section>
+
+<!-- 手勢鎖 -->
+<section id="lock" hidden>
+  <button id="lock-cancel" class="lock-cancel" hidden>取消</button>
+  <div class="lock-inner">
+    <img src="icon-192.png" alt="" class="lock-icon">
+    <h1 id="lock-title">輸入手勢密碼</h1>
+    <p id="lock-msg" class="lock-msg"></p>
+    <div id="lock-pad" class="pad"></div>
+    <button id="lock-forgot" class="link">忘記手勢密碼？</button>
+  </div>
+</section>
+
+<div id="cover" hidden></div>
+
+<div id="app" hidden>
+  <main id="view">
+    <header class="hdr" id="hdr"></header>
+    <div class="scroller" id="scroller"></div>
+  </main>
+  <nav id="tabbar"></nav>
+  <div id="selbar"></div>
+</div>
+
+<!-- 檢視器 -->
+<div id="viewer" hidden>
+  <div class="v-stage"><div class="v-slide"></div></div>
+  <header class="v-top">
+    <button class="vbtn" data-act="v-back" aria-label="返回"></button>
+    <div class="v-title"><b id="v-day"></b><span id="v-time"></span></div>
+    <button class="vbtn" data-act="v-more" aria-label="更多"></button>
+  </header>
+  <footer class="v-bottom">
+    <button class="vbtn" data-act="v-share" aria-label="匯出"></button>
+    <button class="vbtn" data-act="v-fav" aria-label="收藏"></button>
+    <button class="vbtn danger" data-act="v-del" aria-label="刪除"></button>
+  </footer>
+</div>
+
+<div id="sheet" hidden></div>
+<div id="dialog" hidden></div>
+<div id="progress" hidden><div class="pg-card"><div id="pg-text">處理中…</div><div class="pg-bar"><i id="pg-fill"></i></div></div></div>
+<div id="toast" role="status"></div>
+<input type="file" id="picker" multiple accept="image/*,video/*" hidden>
+
+<script src="app.js"></script>
+</body>
+</html>
